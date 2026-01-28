@@ -13,7 +13,7 @@ You are the reviewer. Read everything below and respond to the questions at the 
 ---
 ### Here is the prompt the trainer fed the model: 
 
-You are working in project **APP**. I need you to create a **Story** issue in APP with summary: `Password reset flow`, description: `Implement reset email + token verification`, and assign it to `Dana Li`. Also, move APP-7 to Sprint 2, then leave this comment on APP-7: `Moved to Sprint 2 - not started during planning.`
+You are working in project **APP**. I need you to create a Story issue in APP with summary: `Password reset flow`, description: `Implement reset email + token verification`, and assign it to `Dana Li`. Also, move APP-7 to Sprint 2, then leave this comment on APP-7: `Moved to Sprint 2 - not started during planning.`
 
 
 ---

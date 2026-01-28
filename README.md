@@ -50,4 +50,5 @@ You are working in project **APP**. I need you to create a Story issue in APP wi
 3) Write a corrected 3‑paragraph review comment:
    - Paragraph 1: What the model did right
    - Paragraph 2: what it did wrong
-   - Paragraph 3: what it should have done
+4) What is/are the other mistakes made by the model
+   

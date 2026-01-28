@@ -3,7 +3,7 @@
 You are the reviewer. Read everything below and respond to the questions at the end. Your role is to evaluate the task, the model response, and the comment written by a trainer who ran the task using an agentic server. 
 
 ---
-
+The example server is Jira.
 ### The Server only has these tools available: (4)
 1) `create_issue(projectKey, issueType, summary, description, assignee)`
 2) `move_issues_to_sprint(sprintId, issues[])`

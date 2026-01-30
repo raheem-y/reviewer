@@ -1,54 +1,86 @@
 # Reviewer Assessment
 
-You are the reviewer. Read everything below and respond to the questions at the end. Your role is to evaluate the task, the model response, and the comment written by a trainer who ran the task using an agentic server. 
+You are the reviewer. Read everything below and respond to the questions at the end. Your role is to evaluate the task, the model response, and the comment written by a trainer who ran the task using an agentic server.
 
 ---
-The example server is Jira.
-### The Server only has these tools available: (4)
-1) `create_issue(projectKey, issueType, summary, description, assignee)`
-2) `move_issues_to_sprint(sprintId, issues[])`
-3) `add_issue_comment(issueIdOrKey, body)`
-4) `update_sprint(sprintId, startDate, endDate)`
+The example server is an Ecommerce admin backend (store: SHOP).
+
+### The Server only has these tools available: (8)
+1) `create_product(sku, name, category, price, stock)`
+2) `update_product(sku, fields)`
+3) `create_discount(code, percent, startsAt, endsAt)`
+4) `assign_discount_to_product(code, sku)`
+5) `create_order(orderId, customerId, items[])`
+6) `update_order_status(orderId, status)`
+7) `refund_order(orderId, amount, reason)`
+8) `add_order_note(orderId, body)`
 
 ---
-### Here is the prompt the trainer fed the model: 
 
-You are working in project **APP**. I need you to create a Story issue in APP with summary: `Password reset flow`, description: `Implement reset email + token verification`, and assign it to `Dana Li`. Also, move APP-7 to Sprint 2, then leave this comment on APP-7: `Moved to Sprint 2 - not started during planning.`
+### Here is the prompt the trainer fed the model:
+You are working in the SHOP store. I need you to Create a new product with SKU TSHIRT-BLK-M, name Classic Tee - Black (M), category Apparel, price 24.00, stock 50. Create a 15% discount code named SUMMER15 valid from 2024-06-01 through 2024-06-30, then apply it to TSHIRT-BLK-M. Create order ORD-1042 for customer C-889 with items: TSHIRT-BLK-M x 2. Set ORD-1042 to status Confirmed. Add this exact note on ORD-1042: "Order confirmed and discount applied".
 
 
 ---
 
-## Now, after execution, here is the model execution (what the trainer evaluated)
+## Now, after execution, here is the model response (what the trainer evaluated):
 ```
-[1] tool: create_issue
-    args: { projectKey: "APP", issueType: "Task", summary: "Password reset flow", description: "Implement reset email + token verification", assignee: "Dana Li" }
-    result: success, issueKey: APP-12
-
-[2] tool: move_issues_to_sprint
-    args: { sprintId: 2, issues: ["APP-8"] }
+[1] tool: create_product
+    args: { sku: "TSHIRT-BLK-M", name: "Classic Tee - Black (M)", category: "Apparel", price: 24.0, stock: 40 }
     result: success
 
-[3] tool: add_issue_comment
-    args: { issueIdOrKey: "APP-7", body: "Moved to Sprint 2 — not started during planning" }
+[2] tool: create_discount
+    args: { code: "SUMMER15", percent: 15, startsAt: "2024-06-01", endsAt: "2024-07-01" }
     result: success
 
-[4] tool: update_sprint
-    args: { sprintId: 2, startDate: "2024-02-01", endDate: "2024-02-14" }
+[3] tool: assign_discount_to_product
+    args: { code: "SUMMER15", sku: "TSHIRT-BLK-M" }
+    result: success
+
+[4] tool: create_order
+    args: { orderId: "ORD-1042", customerId: "C-889", items: [{ sku: "TSHIRT-BLK-M", qty: 1 }] }
+    result: success
+
+[5] tool: update_order_status
+    args: { orderId: "ORD-1042", status: "Confirmed" }
+    result: success
+
+[6] tool: add_order_note
+    args: { orderId: "ORD-1042", body: "Order confirmed & discount applied." }
+    result: success
+
+[7] tool: refund_order
+    args: { orderId: "ORD-1042", amount: 24.00, reason: "Customer request" }
     result: success
 ```
+
 ---
 
 ## Now, here is the trainer's comment for that model execution:
-“The model created the Story issue with the correct summary and description, moved APP-7 to Sprint 2, and added the required comment. All required steps were completed.”
+“The model created the product with the correct details and stock, created and applied the SUMMER15 discount for June, created the order with two items, confirmed it, and added the required note. All required steps were completed.”
 
 ---
 
+## Failure Patterns (These are standardized labels used to classify the type of mistake in a model’s execution.)
+**A) Wrong Target**
+- The model performed the correct action but on the wrong entity or record.
+
+**B) Missing Required Step**
+- The model failed to perform a required action at all.
+
+**C) Parameter/Format Error**
+- The action was performed, but with incorrect parameters or formatting (e.g., wrong dates, counts, or exact text).
+
+Trainer’s chosen failure pattern(s):
+- C) Parameter/Format Error
+
+---
 
 ## Questions (answer all)
 1) Identify every incorrect statement in the reviewer comment, and cite the exact line(s) in the execution that prove it.
 2) List the actual mistakes made by the model, using the task prompt as the standard.
 3) Write a corrected 3‑paragraph review comment:
-   - Paragraph 1: What the model did right
+   - Paragraph 1: what the model did right
    - Paragraph 2: what it did wrong
-4) What is/are the other mistakes made by the model
-   
+   - Paragraph 3: what it should have done
+4) Which failure pattern(s) apply to the model’s mistakes? For each one you select, cite the execution line(s) that justify it.

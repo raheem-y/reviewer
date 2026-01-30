@@ -23,7 +23,7 @@ You are working in the SHOP store. I need you to Create a new product with SKU T
 
 ---
 
-## Now, after execution, here is the model response (what the trainer evaluated):
+### Now, after execution, here is the model response (what the trainer evaluated):
 ```
 [1] tool: create_product
     args: { sku: "TSHIRT-BLK-M", name: "Classic Tee - Black (M)", category: "Apparel", price: 24.0, stock: 40 }
@@ -56,12 +56,12 @@ You are working in the SHOP store. I need you to Create a new product with SKU T
 
 ---
 
-## Now, here is the trainer's comment for that model execution:
+### Now, here is the trainer's comment for that model execution:
 “The model created the product with the correct details and stock, created and applied the SUMMER15 discount for June, created the order with two items, confirmed it, and added the required note. All required steps were completed.”
 
 ---
 
-## Failure Patterns (These are standardized labels used to classify the type of mistake in a model’s execution.)
+### Failure Patterns (These are standardized labels used to classify the type of mistake in a model’s execution.)
 **A) Wrong Target**
 - The model performed the correct action but on the wrong entity or record.
 

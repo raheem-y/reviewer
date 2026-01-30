@@ -77,10 +77,10 @@ Trainer’s chosen failure pattern(s):
 ---
 
 ## Questions (answer all)
-1) Identify every incorrect statement in the reviewer comment, and cite the exact line(s) in the execution that prove it.
+1) Identify every incorrect statement in the trainer's comment, and cite the exact line(s) in the execution that prove it.
 2) List the actual mistakes made by the model, using the task prompt as the standard.
 3) Write a corrected 3‑paragraph review comment:
-   - Paragraph 1: what the model did right
+   - Paragraph 1: What the model did right
    - Paragraph 2: what it did wrong
    - Paragraph 3: what it should have done
 4) Which failure pattern(s) apply to the model’s mistakes? For each one you select, cite the execution line(s) that justify it.
